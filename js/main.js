@@ -18,6 +18,8 @@
      1. Reveal on entry — one observer, staggered by --i on the element
      ---------------------------------------------------------------------- */
   const revealables = $$('[data-reveal]');
+  const showAll = () => revealables.forEach(el => { el.dataset.shown = 'true'; });
+
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
@@ -28,8 +30,23 @@
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
 
     revealables.forEach(el => io.observe(el));
+
+    // Failsafe. Intersection callbacks are suppressed while a tab is
+    // throttled, prerendered, or never painted — and a hidden page is a
+    // broken page. If nothing has been revealed shortly after load, drop the
+    // choreography and show everything.
+    const failsafe = () => {
+      if (!revealables.some(el => el.dataset.shown === 'true')) showAll();
+    };
+    window.addEventListener('load', () => setTimeout(failsafe, 1200), { once: true });
+    setTimeout(failsafe, 3000);
+    // Anything already scrolled past on a deep link should never wait for a
+    // scroll that may not come.
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) setTimeout(failsafe, 400);
+    });
   } else {
-    revealables.forEach(el => { el.dataset.shown = 'true'; });
+    showAll();
   }
 
   /* ------------------------------------------------------------------------
@@ -150,7 +167,7 @@
   });
 
   // Which section owns the viewport right now
-  const sectionIds = ['top', 'about', 'product', 'store', 'blog', 'contact'];
+  const sectionIds = ['top', 'about', 'product', 'reel', 'store', 'blog', 'contact'];
   const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
   if ('IntersectionObserver' in window && sections.length) {
     const sio = new IntersectionObserver((entries) => {
@@ -248,7 +265,7 @@
       if (wasOld) {
         t.dataset.active = 'false';
         t.dataset.leaving = 'true';
-        setTimeout(() => { t.dataset.leaving = 'false'; }, 480);
+        setTimeout(() => { t.dataset.leaving = 'false'; }, 320);
       }
       if (isNew) {
         t.dataset.leaving = 'false';
@@ -258,6 +275,7 @@
     });
 
     switchBtns.forEach(b => b.setAttribute('aria-selected', String(b.dataset.tub === key)));
+    fireStreaks();
     if (bloom) { bloom.style.setProperty('--bloom', p.bloom); bloom.style.opacity = '1'; }
     swapText(heroKicker, p.kicker);
     swapText(heroName, p.name);
@@ -265,7 +283,13 @@
     if (heroRead) heroRead.setAttribute('href', p.href);
 
     currentKey = key;
-    if (userInitiated) stopRotate();
+    if (userInitiated) {
+      stopRotate();
+      // Deep-linkable: sharing the URL shares the product you were looking at.
+      const url = new URL(location.href);
+      url.searchParams.set('produk', key);
+      history.replaceState(null, '', url);
+    }
   }
 
   switchBtns.forEach(b => {
@@ -301,9 +325,22 @@
   }
   document.addEventListener('visibilitychange', () => { if (document.hidden) stopRotate(); });
 
+  // Honour ?produk= on load so a shared link opens on the right product.
+  const wanted = new URLSearchParams(location.search).get('produk');
+  if (wanted && PRODUCTS[wanted] && wanted !== currentKey) {
+    tubs.forEach(t => { t.dataset.active = String(t.dataset.tub === wanted); });
+    switchBtns.forEach(b => b.setAttribute('aria-selected', String(b.dataset.tub === wanted)));
+    const p = PRODUCTS[wanted];
+    if (heroKicker) heroKicker.textContent = p.kicker;
+    if (heroName) heroName.textContent = p.name;
+    if (heroDesc) heroDesc.textContent = p.desc;
+    if (heroRead) heroRead.setAttribute('href', p.href);
+    currentKey = wanted;
+  }
+
   // Initial bloom tint
   if (bloom) {
-    bloom.style.setProperty('--bloom', PRODUCTS.creaspark.bloom);
+    bloom.style.setProperty('--bloom', PRODUCTS[currentKey].bloom);
     requestAnimationFrame(() => { bloom.style.opacity = '1'; });
   }
 
@@ -321,12 +358,16 @@
         el.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
         if (raf) return;
         raf = requestAnimationFrame(() => {
-          el.style.transform = `translate(${x * 0.16}px, ${y * 0.22}px)`;
+          el.style.setProperty('--tx', `${(x * 0.16).toFixed(2)}px`);
+          el.style.setProperty('--ty', `${(y * 0.22).toFixed(2)}px`);
           raf = null;
         });
       };
       el.addEventListener('pointermove', onMove);
-      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+      el.addEventListener('pointerleave', () => {
+        el.style.removeProperty('--tx');
+        el.style.removeProperty('--ty');
+      });
     });
 
     $$('[data-spot]').forEach(el => {
@@ -373,11 +414,16 @@
     let index = 0;
     let auto = null;
 
-    const step = () => {
+    // Measured on resize only. Reading layout inside pointermove would force
+    // a synchronous reflow on every frame of a drag.
+    let cachedStep = 0;
+    const measure = () => {
       const a = slides[0]?.getBoundingClientRect().width || 0;
       const gap = parseFloat(getComputedStyle(track).gap) || 0;
-      return a + gap;
+      cachedStep = a + gap;
     };
+    const step = () => cachedStep || 1;
+    measure();
     const perView = () => Math.max(1, Math.round(viewport.clientWidth / (step() || 1)));
     const maxIndex = () => Math.max(0, slides.length - perView());
 
@@ -453,7 +499,7 @@
       if (Math.abs(moved) > 6) { e.preventDefault(); e.stopPropagation(); }
     }, true);
 
-    window.addEventListener('resize', () => { buildDots(); render(); });
+    window.addEventListener('resize', () => { measure(); buildDots(); render(); });
     buildDots();
     render();
 
@@ -575,5 +621,178 @@
     window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
     history.replaceState(null, '', `#${id}`);
   });
+
+
+  /* ------------------------------------------------------------------------
+     14. Sport footage
+         Two players, one rule: nothing autoplays that the visitor did not ask
+         for except the muted ambient bed, and even that stops the moment it
+         leaves the viewport, the tab hides, reduced motion is on, or the
+         connection asks us to save data.
+     ---------------------------------------------------------------------- */
+  const saveData = navigator.connection && navigator.connection.saveData === true;
+  const wantsVideo = !reduced && !saveData;
+
+  /* --- Ambient bed behind the hero --- */
+  const bed = $('#heroBed');
+  if (bed) {
+    if (!wantsVideo) {
+      // Poster only. The still already carries the gym; motion would not.
+      bed.dataset.ready = 'true';
+    } else {
+      const v = document.createElement('video');
+      v.muted = true; v.loop = true; v.playsInline = true;
+      v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+      v.preload = 'auto';
+      v.poster = 'assets/media/hero-poster.jpg';
+      v.src = 'assets/media/hero-loop.mp4';
+      v.setAttribute('aria-hidden', 'true');
+      // The poster <img> stays underneath as a permanent fallback: if the
+      // video never decodes or autoplay is refused, the gym still shows.
+      bed.appendChild(v);
+      bed.dataset.ready = 'true';
+
+      const tryPlay = () => { const p = v.play(); if (p) p.catch(() => { bed.dataset.ready = 'true'; }); };
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(entries => {
+          entries[0].isIntersecting ? tryPlay() : v.pause();
+        }, { threshold: 0.05 }).observe(bed);
+      } else {
+        tryPlay();
+      }
+      document.addEventListener('visibilitychange', () => { if (document.hidden) v.pause(); });
+    }
+  }
+
+  /* --- Speed streaks: a 620ms burst, restarted cleanly on every switch --- */
+  function fireStreaks() {
+    const el = document.getElementById('streaks');
+    if (!el || reduced) return;
+    el.dataset.fire = 'false';
+    // Force a reflow so the animation restarts rather than being ignored.
+    void el.offsetWidth;
+    el.dataset.fire = 'true';
+  }
+
+  /* --- The reel player --- */
+  const reelVideo = $('#reelVideo');
+  if (reelVideo) {
+    const playBtn = $('#reelPlay');
+    const muteBtn = $('#reelMute');
+    const bar = $('#reelBar');
+    const beats = $$('.beat');
+    let loaded = false;
+
+    const setPlayUI = (playing) => {
+      $('#reelPlayIcon').innerHTML = playing
+        ? '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>'
+        : '<path d="M8 5v14l11-7z"/>';
+      $('#reelPlayLabel').textContent = playing ? 'Pause' : 'Play';
+    };
+    const setMuteUI = () => {
+      const m = reelVideo.muted;
+      muteBtn.setAttribute('aria-pressed', String(m));
+      $('#reelMuteIcon').innerHTML = m
+        ? '<path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M19 9l-4 6M15 9l4 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>'
+        : '<path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>';
+      $('#reelMuteLabel').textContent = m ? 'Suara' : 'Bisu';
+    };
+
+    const ensureLoaded = () => {
+      if (loaded) return;
+      reelVideo.preload = 'auto';
+      reelVideo.load();
+      loaded = true;
+    };
+
+    playBtn?.addEventListener('click', () => {
+      ensureLoaded();
+      if (reelVideo.paused) { reelVideo.play().catch(() => {}); } else { reelVideo.pause(); }
+    });
+    muteBtn?.addEventListener('click', () => {
+      ensureLoaded();
+      reelVideo.muted = !reelVideo.muted;
+      setMuteUI();
+      if (reelVideo.paused) reelVideo.play().catch(() => {});
+    });
+
+    reelVideo.addEventListener('play', () => setPlayUI(true));
+    reelVideo.addEventListener('pause', () => setPlayUI(false));
+
+    // The beat list is a table of contents for the film: it lights up in step
+    // with playback, and clicking a beat seeks to it.
+    reelVideo.addEventListener('timeupdate', () => {
+      const d = reelVideo.duration || 1;
+      if (bar) bar.style.setProperty('--p', (reelVideo.currentTime / d).toFixed(4));
+      let active = -1;
+      beats.forEach((b, i) => { if (reelVideo.currentTime >= Number(b.dataset.t)) active = i; });
+      beats.forEach((b, i) => { b.dataset.on = String(i === active); });
+    });
+    beats.forEach(b => {
+      b.setAttribute('role', 'button');
+      b.setAttribute('tabindex', '0');
+      const seek = () => {
+        ensureLoaded();
+        reelVideo.currentTime = Number(b.dataset.t);
+        reelVideo.play().catch(() => {});
+      };
+      b.addEventListener('click', seek);
+      b.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); seek(); }
+      });
+      b.style.cursor = 'pointer';
+    });
+
+    setMuteUI();
+    setPlayUI(false);
+
+    // Muted autoplay when it scrolls into view, but only if motion is welcome.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          if (wantsVideo) { ensureLoaded(); reelVideo.play().catch(() => {}); }
+        } else {
+          reelVideo.pause();
+        }
+      }, { threshold: 0.4 }).observe(reelVideo);
+    }
+    document.addEventListener('visibilitychange', () => { if (document.hidden) reelVideo.pause(); });
+  }
+
+
+  /* ------------------------------------------------------------------------
+     15. Motion toggle
+         The ambient loops outlast five seconds next to reading content, so
+         there is an explicit stop that does not require changing an OS
+         setting. The choice is remembered for the session.
+     ---------------------------------------------------------------------- */
+  const motionBtn = $('#motionToggle');
+  if (motionBtn) {
+    const stored = sessionStorage.getItem('hp-motion');
+    let motionOn = stored ? stored === 'on' : !reduced;
+
+    const applyMotion = () => {
+      document.documentElement.dataset.motion = motionOn ? 'on' : 'off';
+      motionBtn.setAttribute('aria-pressed', String(!motionOn));
+      $('#motionLabel').textContent = motionOn ? 'Jeda animasi' : 'Putar animasi';
+      $('#motionIcon').innerHTML = motionOn
+        ? '<path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor" stroke="none"/>'
+        : '<path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/>';
+      const v = document.querySelector('#heroBed video');
+      if (v) { motionOn ? v.play().catch(() => {}) : v.pause(); }
+      if (!motionOn) stopRotate();
+    };
+
+    motionBtn.addEventListener('click', () => {
+      motionOn = !motionOn;
+      sessionStorage.setItem('hp-motion', motionOn ? 'on' : 'off');
+      applyMotion();
+    });
+
+    applyMotion();
+
+    // Slides in after first paint so it never competes with the hero entrance.
+    requestAnimationFrame(() => { motionBtn.dataset.on = 'true'; });
+  }
 
 })();

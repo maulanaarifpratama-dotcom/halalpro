@@ -27,6 +27,8 @@ assets/
   products/         product shot hasil cutout + folder original/ (aset mentah)
   blog/             thumbnail 4 artikel
   testimonials/     kartu testimoni + cover video
+  media/            footage gym: hero-loop.mp4 (bed ambient), reel.mp4 (film
+                    vertikal), plus poster JPG untuk keduanya
 ```
 
 Semua gambar diambil dari halalpro.id dan disimpan lokal — situs ini tidak memuat
@@ -43,6 +45,7 @@ hasil background removal dari key visual marketplace; file aslinya tetap ada di
 | About | Welcome to Halal Pro, Our Mission, Our Vission |
 | Pilar | Halal, Terjangkau, Berkualitas, Inovatif, Komunitas, Peduli |
 | Produk | Deskripsi lengkap + 4 manfaat "Before → After" per produk (12 total) |
+| Film | Player vertikal "CreaSpark Sebagai Solusi" + 6 beat yang bisa diklik untuk seek |
 | Testimoni | Carousel 5 slide, salah satunya video YouTube |
 | Blog | 4 artikel, tertaut ke halalpro.id |
 | Contact | 0895-3333-36546 · halalpro@bisabaik.or.id · alamat HQ & WH |
@@ -64,10 +67,31 @@ lime brand punya tempat untuk bekerja.
 | Display & body | Alegreya Sans | font asli halalpro.id |
 | Label & angka | Poppins | font sekunder asli |
 
+## Footage
+
+Video di situs ini adalah footage milik Halal Pro sendiri — film "CreaSpark Sebagai
+Solusi" yang sudah ada di halalpro.id (aslinya 59 MB, 1440x2560). Tidak ada stock
+footage pihak ketiga. Dari satu sumber itu di-encode dua turunan:
+
+- `hero-loop.mp4` (675 KB, 1280x720, 6 detik, tanpa audio) — dua potongan latihan
+  gym yang di-crop untuk membuang caption dan logo yang terbakar di frame, dipakai
+  sebagai bed ambient di belakang hero dengan grayscale + brightness turun dan
+  gradient gelap di atasnya. Poster JPG tetap ada di bawahnya sebagai fallback
+  permanen kalau video gagal decode atau autoplay ditolak.
+- `reel.mp4` (2 MB, 540x960, 28 detik, dengan audio) — film utuh dalam frame
+  ponsel, `preload="none"` sampai visitor benar-benar melihatnya.
+
+Perintah encode-nya ada di riwayat commit; sumbernya tinggal diambil ulang dari
+`wp-content/uploads/2024/11/CREASPARK-SEBAGAI-SOLUSI.mp4` bila perlu di-render lagi.
+
 ## Motion
 
 Tesis: **lineup melangkah maju.** Satu momen fokal, sisanya motion yang menjelaskan
-state atau memberi feedback.
+state atau memberi feedback. Kurva dan durasinya mengikuti prinsip Emil Kowalski:
+kurva bawaan CSS terlalu lemah, jadi dipakai varian kuat
+(`cubic-bezier(0.23, 1, 0.32, 1)`); tidak pernah `ease-in` pada UI karena menunda
+frame pertama — justru frame yang paling diperhatikan; animasi UI di bawah 300 ms;
+exit selalu lebih cepat dari entrance.
 
 - **Focal** — hero product switcher. Ganti produk menjalankan exit/enter berpasangan
   pada kemasan (translate + scale + rotateY), me-retint energy bloom di belakangnya,
@@ -80,14 +104,26 @@ state atau memberi feedback.
   section yang sedang tampil lewat IntersectionObserver.
 - **Feedback** — tombol magnetic, press-scale, tilt 3D pada product shot, spotlight
   pada kartu, salin nomor/email satu klik.
+- **Sport** — footage gym jadi bed di belakang hero, dan burst "speed streak"
+  menyapu layar tiap kali produk diganti. Film vertikal punya beat list yang
+  menyala mengikuti playback dan bisa diklik untuk seek.
 - **Budget** — blur dan gradient besar hanya di hero dan CTA. Selebihnya transform dan
   opacity. Loop ambient berhenti saat offscreen. Video YouTube pakai facade: tidak ada
   request pihak ketiga sebelum tombol play ditekan.
 
 `prefers-reduced-motion` menghapus perjalanan spasial dan seluruh loop ambient, tetapi
-menyisakan transisi opacity, warna, dan state agar feedback tetap terbaca.
+menyisakan transisi opacity, warna, dan state agar feedback tetap terbaca. Karena loop
+ambient berjalan lebih dari lima detik di samping konten yang dibaca, ada juga tombol
+**Jeda animasi** di kiri bawah — visitor bisa menghentikannya tanpa mengubah setelan
+sistem, dan pilihannya diingat selama sesi. `Save-Data` juga dihormati: video tidak
+diambil sama sekali, hanya poster.
 
 ## Aksesibilitas
+
+Product switcher tersimpan di URL (`?produk=whey`), jadi tautan yang dibagikan membuka
+produk yang sama. Reveal punya failsafe: kalau `IntersectionObserver` tidak pernah jalan
+— tab di-throttle, prerender, atau tidak pernah dilukis — semuanya ditampilkan setelah
+1,2 detik, karena halaman kosong lebih buruk daripada kehilangan koreografi.
 
 Konten tetap terlihat tanpa JavaScript — kelas `js` ditambahkan lebih dulu, dan hanya
 di bawah kelas itu `[data-reveal]` disembunyikan. Switcher produk memakai

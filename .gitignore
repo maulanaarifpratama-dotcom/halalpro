@@ -3,3 +3,8 @@ Thumbs.db
 *.log
 .vscode/
 .idea/
+
+# third-party skills installed into this project by the skills CLI
+.claude/
+node_modules/
+skills-lock.json

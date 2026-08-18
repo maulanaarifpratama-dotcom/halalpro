@@ -70,6 +70,7 @@
       <a class="nav__link" href="#top" data-section="top">Home</a>
       <a class="nav__link" href="#about" data-section="about">About Us</a>
       <a class="nav__link" href="#product" data-section="product">Product</a>
+      <a class="nav__link" href="#reel" data-section="reel">Film</a>
       <a class="nav__link" href="#store" data-section="store">Store</a>
       <a class="nav__link" href="#blog" data-section="blog">Blog/News</a>
       <a class="nav__link" href="#contact" data-section="contact">Contact</a>
@@ -90,9 +91,10 @@
   <a href="#top" style="--i:0">Home</a>
   <a href="#about" style="--i:1">About Us</a>
   <a href="#product" style="--i:2">Product</a>
-  <a href="#store" style="--i:3">Store</a>
-  <a href="#blog" style="--i:4">Blog/News</a>
-  <a href="#contact" style="--i:5">Contact</a>
+  <a href="#reel" style="--i:3">Film</a>
+  <a href="#store" style="--i:4">Store</a>
+  <a href="#blog" style="--i:5">Blog/News</a>
+  <a href="#contact" style="--i:6">Contact</a>
 </nav>
 
 <main id="main">
@@ -100,8 +102,12 @@
 <!-- ══════════════════════════════════ HERO ═════════════════════════════════ -->
 <section class="hero" id="top">
   <div class="hero__bg" aria-hidden="true">
+    <div class="reel-bed" id="heroBed" style="--bed-opacity:.46">
+      <img src="assets/media/hero-poster.jpg" alt="" width="1280" height="720">
+    </div>
     <div class="hero__grid-lines"></div>
     <div class="hero__bloom" id="bloom"></div>
+    <div class="streaks" id="streaks"><i></i><i></i><i></i><i></i></div>
   </div>
 
   <div class="shell hero__inner">
@@ -118,9 +124,9 @@
       <p class="hero__desc" data-reveal style="--i:2" id="heroDesc">Meningkatkan kekuatan, daya tahan, dan performa otot. Dengan tambahan Glutamin, membantu penyerapan nutrisi tubuh dan meningkatkan imun</p>
 
       <div class="switcher" role="tablist" aria-label="Pilih produk" data-reveal style="--i:3">
-        <button class="switcher__btn" role="tab" aria-selected="true" data-tub="creaspark">CreaSpark</button>
-        <button class="switcher__btn" role="tab" aria-selected="false" data-tub="whey">Whey Radiant</button>
-        <button class="switcher__btn" role="tab" aria-selected="false" data-tub="naturspark">NaturSpark</button>
+        <button class="switcher__btn" role="tab" aria-selected="true" data-tub="creaspark" translate="no">CreaSpark</button>
+        <button class="switcher__btn" role="tab" aria-selected="false" data-tub="whey" translate="no">Whey Radiant</button>
+        <button class="switcher__btn" role="tab" aria-selected="false" data-tub="naturspark" translate="no">NaturSpark</button>
       </div>
 
       <div class="hero__actions" data-reveal style="--i:4">
@@ -308,7 +314,7 @@
       <div class="product__media" data-reveal="scale">
         <span class="product__glow" style="--tint:rgba(148,233,0,.3)" aria-hidden="true"></span>
         <span class="product__ring" aria-hidden="true"></span>
-        <img class="product__shot" data-tilt src="assets/products/creaspark-cut.png" alt="Kemasan CreaSpark dari Halal Pro" width="583" height="321" loading="lazy">
+        <img class="product__shot" data-tilt data-reveal="fade" data-clip src="assets/products/creaspark-cut.png" alt="Kemasan CreaSpark dari Halal Pro" width="583" height="321" loading="lazy">
       </div>
 
       <div class="product__copy">
@@ -381,7 +387,7 @@
       <div class="product__media" data-reveal="scale">
         <span class="product__glow" style="--tint:rgba(13,184,0,.3)" aria-hidden="true"></span>
         <span class="product__ring" aria-hidden="true"></span>
-        <img class="product__shot" data-tilt src="assets/products/whey-radiant-cut.png" alt="Kemasan Whey Radiant dari Halal Pro" width="944" height="673" loading="lazy">
+        <img class="product__shot" data-tilt data-reveal="fade" data-clip src="assets/products/whey-radiant-cut.png" alt="Kemasan Whey Radiant dari Halal Pro" width="944" height="673" loading="lazy">
       </div>
 
       <div class="product__copy">
@@ -454,7 +460,7 @@
       <div class="product__media" data-reveal="scale">
         <span class="product__glow" style="--tint:rgba(0,129,64,.42)" aria-hidden="true"></span>
         <span class="product__ring" aria-hidden="true"></span>
-        <img class="product__shot" data-tilt src="assets/products/naturspark-cut.png" alt="Kemasan NaturSpark dari Halal Pro" width="603" height="685" loading="lazy">
+        <img class="product__shot" data-tilt data-reveal="fade" data-clip src="assets/products/naturspark-cut.png" alt="Kemasan NaturSpark dari Halal Pro" width="603" height="685" loading="lazy">
       </div>
 
       <div class="product__copy">
@@ -520,6 +526,50 @@
   </div>
 </article>
 
+
+<!-- ══════════════════════════════════ REEL ═════════════════════════════════ -->
+<section class="section reel" id="reel">
+  <div class="field" aria-hidden="true"></div>
+  <div class="shell reel__grid">
+    <div class="reel__copy">
+      <span class="eyebrow" data-reveal="fade">Film</span>
+      <h2 data-reveal>CreaSpark<br>Sebagai Solusi</h2>
+      <p data-reveal style="--i:1">Latihan berat, pemulihan lambat, dan keraguan soal kehalalan suplemen — itu cerita yang kami dengar berulang kali. Film pendek ini mengikuti satu perjalanan latihan, dari kegagalan sampai recovery yang lebih cepat.</p>
+
+      <div class="beats" data-reveal style="--i:2">
+        <div class="beat" data-beat="0" data-t="0"><b>01</b><span>Kegagalan di masa lalu</span></div>
+        <div class="beat" data-beat="1" data-t="6"><b>02</b><span>Pengorbanan</span></div>
+        <div class="beat" data-beat="2" data-t="11"><b>03</b><span>Solusi baru yang halal</span></div>
+        <div class="beat" data-beat="3" data-t="17"><b>04</b><span>Menambah kekuatan</span></div>
+        <div class="beat" data-beat="4" data-t="21"><b>05</b><span>Recovery lebih cepat</span></div>
+        <div class="beat" data-beat="5" data-t="25"><b>06</b><span>Stay Fit, Stay Halal</span></div>
+      </div>
+    </div>
+
+    <div class="phone" data-reveal="scale">
+      <span class="phone__glow" aria-hidden="true"></span>
+      <div class="phone__screen">
+        <video id="reelVideo" muted loop playsinline preload="none"
+               poster="assets/media/reel-poster.jpg"
+               aria-label="Film CreaSpark Sebagai Solusi dari Halal Pro">
+          <source src="assets/media/reel.mp4" type="video/mp4">
+        </video>
+        <div class="phone__controls">
+          <button class="pill-btn" id="reelPlay" aria-label="Putar atau jeda film">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" id="reelPlayIcon"><path d="M8 5v14l11-7z"/></svg>
+            <span id="reelPlayLabel">Play</span>
+          </button>
+          <button class="pill-btn" id="reelMute" aria-label="Aktifkan atau matikan suara" aria-pressed="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" id="reelMuteIcon"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z" opacity=".5"/><path d="m19 5-14 14" stroke="currentColor" stroke-width="2"/></svg>
+            <span id="reelMuteLabel">Suara</span>
+          </button>
+        </div>
+        <div class="phone__progress" aria-hidden="true"><i id="reelBar"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════════════════ TESTIMONI ════════════════════════════════ -->
 <section class="section" id="testimoni">
   <div class="field" aria-hidden="true"></div>
@@ -569,7 +619,7 @@
     <div class="posts">
       <a class="post" href="https://halalpro.id/creatine-halal-creaspark-rahasia-pump-lebih-lama-dan-otot-makin-besar-ala-atlet-muslim/" data-reveal style="--i:0">
         <div class="post__thumb">
-          <img src="assets/blog/post-1.png" alt="" width="800" height="550" loading="lazy">
+          <img data-clip src="assets/blog/post-1.png" alt="" width="800" height="550" loading="lazy">
           <span class="post__cat">Creatine</span>
         </div>
         <div class="post__body">
@@ -580,7 +630,7 @@
 
       <a class="post" href="https://halalpro.id/creatine-monohydrate-suplemen-wajib-untuk-performa-olahraga-yang-lebih-baik/" data-reveal style="--i:1">
         <div class="post__thumb">
-          <img src="assets/blog/post-2.png" alt="" width="800" height="550" loading="lazy">
+          <img data-clip src="assets/blog/post-2.png" alt="" width="800" height="550" loading="lazy">
           <span class="post__cat">Creatine</span>
         </div>
         <div class="post__body">
@@ -591,7 +641,7 @@
 
       <a class="post" href="https://halalpro.id/maksimalkan-manfaat-creaspark-panduan-lengkap-penggunaan-creatine-untuk-hasil-optimal/" data-reveal style="--i:2">
         <div class="post__thumb">
-          <img src="assets/blog/post-3.png" alt="" width="800" height="550" loading="lazy">
+          <img data-clip src="assets/blog/post-3.png" alt="" width="800" height="550" loading="lazy">
           <span class="post__cat">Creatine</span>
         </div>
         <div class="post__body">
@@ -602,7 +652,7 @@
 
       <a class="post" href="https://halalpro.id/ingin-tubuh-kuat-dan-bugar-untuk-beribadah-dengan-optimal-temukan-rahasianya-di-sini/" data-reveal style="--i:3">
         <div class="post__thumb">
-          <img src="assets/blog/post-4.png" alt="" width="800" height="550" loading="lazy">
+          <img data-clip src="assets/blog/post-4.png" alt="" width="800" height="550" loading="lazy">
           <span class="post__cat">Creatine</span>
         </div>
         <div class="post__body">
@@ -673,11 +723,11 @@
         <label for="cName">Your Name</label>
       </div>
       <div class="field-row">
-        <input type="email" id="cEmail" name="email" placeholder=" " autocomplete="email" required>
+        <input type="email" id="cEmail" name="email" placeholder=" " autocomplete="email" inputmode="email" spellcheck="false" required>
         <label for="cEmail">Your Email</label>
       </div>
       <div class="field-row">
-        <input type="tel" id="cPhone" name="phone" placeholder=" " autocomplete="tel">
+        <input type="tel" id="cPhone" name="phone" placeholder=" " autocomplete="tel" inputmode="tel" spellcheck="false">
         <label for="cPhone">Your Phone</label>
       </div>
       <div class="field-row">
@@ -755,6 +805,7 @@
           <a href="#top">Home</a>
           <a href="#about">About Us</a>
           <a href="#product">Product</a>
+          <a href="#reel">Film</a>
           <a href="#store">Store</a>
           <a href="#blog">Blog/News</a>
           <a href="#contact">Contact</a>
@@ -765,7 +816,7 @@
         <h4>Subscribe Now</h4>
         <p style="color:var(--fg-dim);font-size:.98rem">Jangan lewatkan newsletter kami!</p>
         <form class="subscribe" id="subForm" novalidate>
-          <input type="email" id="subEmail" placeholder="Your mail here" aria-label="Alamat email" required>
+          <input type="email" id="subEmail" placeholder="nama@email.com…" aria-label="Alamat email" autocomplete="email" inputmode="email" spellcheck="false" required>
           <button class="btn" type="submit">Subscribe</button>
         </form>
         <p class="form__status" id="subStatus" role="status" aria-live="polite"></p>
@@ -785,6 +836,11 @@
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.17c-.24.68-1.42 1.33-1.95 1.37-.5.05-.97.23-3.27-.68-2.75-1.08-4.5-3.9-4.64-4.08-.13-.18-1.11-1.48-1.11-2.82s.7-2 .95-2.28c.25-.27.54-.34.72-.34s.36 0 .52.01c.17.01.39-.06.61.47.24.56.8 1.94.87 2.08.07.14.12.3.02.48-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.11.07.65-.17 1.33z"/></svg>
   <span>WhatsApp</span>
 </a>
+
+<button class="motion-toggle" id="motionToggle" aria-pressed="false" data-on="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" id="motionIcon"><path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor" stroke="none"/></svg>
+  <span id="motionLabel">Jeda animasi</span>
+</button>
 
 <div class="lightbox" id="lightbox" data-open="false" role="dialog" aria-modal="true" aria-label="Pemutar video">
   <button class="lightbox__close" id="lbClose" aria-label="Tutup video">
