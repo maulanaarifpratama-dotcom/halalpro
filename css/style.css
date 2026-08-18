@@ -114,6 +114,10 @@ body {
 }
 
 img, svg, video { display: block; max-width: 100%; }
+/* <picture> exists only to offer a WebP source. It must not become a box, or
+   every layout rule written against the <img> would start addressing the
+   wrapper instead. */
+picture { display: contents; }
 img { height: auto; }
 button, input, textarea, select { font: inherit; color: inherit; }
 button { background: none; border: 0; cursor: pointer; }
@@ -519,7 +523,14 @@ p { text-wrap: pretty; }
   font-weight: 700;
 }
 
+.hero__headline { display: grid; }
 .hero__title {
+  /* Applied to both the h1 and the rotating product <p>, so the display face
+     has to be declared here rather than inherited from the h1 rule. */
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
   font-size: var(--t-h1);
   text-transform: uppercase;
   line-height: 0.86;

@@ -131,6 +131,45 @@ di bawah kelas itu `[data-reveal]` disembunyikan. Switcher produk memakai
 lightbox `aria-modal` dengan Escape dan focus return, semua ikon dekoratif
 `aria-hidden`, dan ada skip link ke konten utama.
 
+## SEO
+
+Semua URL absolut di `robots.txt`, `sitemap.xml`, `canonical`, `og:*`, dan JSON-LD
+mengasumsikan situs ini dideploy di **https://halalpro.id/**. Kalau dideploy ke domain
+lain (GitHub Pages, staging), cari-ganti host itu dulu — kalau tidak, canonical akan
+menunjuk ke situs lama dan halaman baru tidak akan terindeks.
+
+**Head**
+
+| Item | Nilai |
+|---|---|
+| `<title>` | 59 karakter, keyword di depan |
+| `meta description` | 153 karakter |
+| `meta robots` | `index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1` |
+| Open Graph | judul, deskripsi, URL, gambar **absolut** + width/height/type/alt |
+| Twitter | `summary_large_image` lengkap dengan title/description/image/alt |
+| Lainnya | canonical, RSS alternate ke blog lama, `lang="id"`, author |
+
+**Structured data** — satu `@graph` berisi 7 entitas yang saling terhubung lewat `@id`:
+`Organization` (dua alamat + contactPoint + 6 `sameAs`), `WebSite`, `WebPage`, tiga
+`Product` (CreaSpark, Whey Radiant, NaturSpark), dan `VideoObject` untuk film CreaSpark.
+Tidak ada `offers` atau `aggregateRating` karena harga dan rating tidak tersedia di situs
+lama — mengarangnya akan kena manual action, bukan rich result.
+
+**Heading** — tepat satu `<h1>`, hierarki h1→h2→h3→h4 tanpa lompatan. Nama produk di
+hero sengaja **bukan** `<h1>`: ia berganti mengikuti switcher, dan heading yang berubah
+di bawah pengunjung tidak mendeskripsikan apa pun. `<h1>` dipegang baris yang stabil.
+
+**Gambar** — 7,5 MB turun jadi **464 KB** yang benar-benar dikirim. Setiap gambar
+di-resize ke ukuran tampil (2x untuk retina) lalu diberi turunan WebP, disajikan lewat
+`<picture>` dengan PNG sebagai fallback. `picture { display: contents }` memastikan
+elemen pembungkus tidak menjadi box, jadi semua aturan layout yang ditulis untuk `<img>`
+tetap berlaku.
+
+**Lain-lain** — `robots.txt` + `sitemap.xml` (dengan ekstensi image dan video),
+preload untuk gambar LCP dan poster hero, `preconnect` ke Google Fonts, `loading="lazy"`
+di bawah lipatan, `fetchpriority="high"` di atasnya, dan `width`/`height` di semua
+gambar agar tidak ada layout shift.
+
 ## Catatan
 
 Situs statis tidak punya backend, jadi form kontak dan subscribe menyusun draft email

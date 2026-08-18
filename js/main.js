@@ -243,16 +243,29 @@
   function swapText(el, text) {
     if (!el) return;
     if (reduced) { el.textContent = text; return; }
-    el.animate(
-      [{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(-8px)' }],
-      { duration: 140, easing: 'cubic-bezier(.65,0,.35,1)', fill: 'forwards' }
-    ).onfinish = () => {
+
+    let swapped = false;
+    const swap = () => {
+      if (swapped) return;
+      swapped = true;
       el.textContent = text;
       el.animate(
-        [{ opacity: 0, transform: 'translateY(9px)' }, { opacity: 1, transform: 'translateY(0)' }],
-        { duration: 320, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'forwards' }
+        [{ opacity: 0, transform: 'translateY(9px)', filter: 'blur(4px)' },
+         { opacity: 1, transform: 'translateY(0)', filter: 'blur(0)' }],
+        { duration: 300, easing: 'cubic-bezier(.23,1,.32,1)', fill: 'forwards' }
       );
     };
+
+    // Exit is deliberately shorter than the entrance.
+    el.animate(
+      [{ opacity: 1, transform: 'translateY(0)', filter: 'blur(0)' },
+       { opacity: 0, transform: 'translateY(-8px)', filter: 'blur(4px)' }],
+      { duration: 160, easing: 'cubic-bezier(.77,0,.175,1)', fill: 'forwards' }
+    ).onfinish = swap;
+
+    // Animations are frozen in a hidden or throttled tab, and onfinish would
+    // never arrive. The copy must land regardless of whether the motion does.
+    setTimeout(swap, 260);
   }
 
   function selectProduct(key, userInitiated = false) {

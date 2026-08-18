@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Aset yang tidak perlu dirayapi sebagai halaman
+Disallow: /assets/products/original/
+
+Sitemap: https://halalpro.id/sitemap.xml

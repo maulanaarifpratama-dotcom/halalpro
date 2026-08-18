@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
+  <url>
+    <loc>https://halalpro.id/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://halalpro.id/assets/products/creaspark-cut.png</image:loc>
+      <image:title>CreaSpark — creatine halal Halal Pro</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://halalpro.id/assets/products/whey-radiant-cut.png</image:loc>
+      <image:title>Whey Radiant — whey protein halal Halal Pro</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://halalpro.id/assets/products/naturspark-cut.png</image:loc>
+      <image:title>NaturSpark — testo booster herbal halal Halal Pro</image:title>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://halalpro.id/assets/media/reel-poster.jpg</video:thumbnail_loc>
+      <video:title>CreaSpark Sebagai Solusi</video:title>
+      <video:description>Film pendek Halal Pro tentang perjalanan latihan: dari kegagalan di masa lalu sampai recovery yang lebih cepat bersama CreaSpark.</video:description>
+      <video:content_loc>https://halalpro.id/assets/media/reel.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <url>
+    <loc>https://halalpro.id/creatine-halal-creaspark-rahasia-pump-lebih-lama-dan-otot-makin-besar-ala-atlet-muslim/</loc>
+    <lastmod>2024-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://halalpro.id/creatine-monohydrate-suplemen-wajib-untuk-performa-olahraga-yang-lebih-baik/</loc>
+    <lastmod>2024-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://halalpro.id/maksimalkan-manfaat-creaspark-panduan-lengkap-penggunaan-creatine-untuk-hasil-optimal/</loc>
+    <lastmod>2024-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://halalpro.id/ingin-tubuh-kuat-dan-bugar-untuk-beribadah-dengan-optimal-temukan-rahasianya-di-sini/</loc>
+    <lastmod>2024-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>
