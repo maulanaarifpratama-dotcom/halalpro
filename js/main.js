@@ -66,6 +66,10 @@
   }
 
   const counters = $$('[data-count]');
+  const settleCounters = () => counters.forEach(el => {
+    if (el.textContent !== el.dataset.count) el.textContent = el.dataset.count;
+  });
+
   if ('IntersectionObserver' in window) {
     const cio = new IntersectionObserver((entries) => {
       for (const e of entries) {
@@ -75,8 +79,20 @@
       }
     }, { threshold: 0.6 });
     counters.forEach(el => cio.observe(el));
+
+    // Same failsafe as the reveal, and it matters more here: a counter stuck
+    // at its placeholder does not just look unfinished, it states a number
+    // that is false. If the observer never ran, write the real values in.
+    const counterFailsafe = () => {
+      if (counters.every(el => el.textContent === '0')) settleCounters();
+    };
+    window.addEventListener('load', () => setTimeout(counterFailsafe, 1400), { once: true });
+    setTimeout(counterFailsafe, 3200);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) setTimeout(counterFailsafe, 500);
+    });
   } else {
-    counters.forEach(el => { el.textContent = el.dataset.count; });
+    settleCounters();
   }
 
   /* ------------------------------------------------------------------------
@@ -107,6 +123,17 @@
   } else {
     gauges.forEach(g => { const p = $('.gauge__fill', g); if (p) p.style.strokeDashoffset = g._target; });
   }
+
+  // If the observer above never fired, fill the arcs anyway: an empty gauge
+  // next to a "100%" label reads as a contradiction.
+  setTimeout(() => {
+    gauges.forEach(g => {
+      const path = $('.gauge__fill', g);
+      if (path && path.style.strokeDashoffset !== String(g._target)) {
+        path.style.strokeDashoffset = g._target;
+      }
+    });
+  }, 3200);
 
   /* ------------------------------------------------------------------------
      4. Scroll progress + sticky nav state + floating WhatsApp
