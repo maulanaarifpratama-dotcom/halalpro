@@ -1964,3 +1964,112 @@ html[data-motion="off"] .reel-bed video { display: none; }
   text-align: inherit;
 }
 .slide { border: 1px solid var(--hairline-soft); }
+
+/* ==========================================================================
+   26. Blog post pages
+   Same shell as the homepage; the article body is the only new territory.
+   ========================================================================== */
+.post-page { padding-top: calc(var(--nav-h) + clamp(2rem, 1rem + 3vw, 4rem)); }
+.post-page__shell { max-width: 860px; }
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  margin-bottom: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+}
+.crumbs a { transition: color var(--d-fast) var(--e-out); }
+@media (hover: hover) and (pointer: fine) {
+  .crumbs a:hover { color: var(--lime); }
+}
+.crumbs [aria-current] { color: var(--fg-dim); }
+
+.post-page__head { display: grid; gap: 1.1rem; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem); }
+.post-page__head h1 {
+  font-size: clamp(1.9rem, 1.2rem + 2.8vw, 3.4rem);
+  line-height: 1.02;
+  text-transform: none;
+  letter-spacing: -0.025em;
+}
+.post-page__meta {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+.post-page__hero {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--hairline-soft);
+  background: var(--ink-2);
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem);
+  aspect-ratio: 16 / 9;
+}
+.post-page__hero img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Article body ------------------------------------------------------------ */
+.prose {
+  font-size: clamp(1.02rem, 0.98rem + 0.25vw, 1.15rem);
+  line-height: 1.75;
+  color: var(--fg-dim);
+}
+.prose > * + * { margin-top: 1.15em; }
+.prose p { max-width: 68ch; }
+.prose strong { color: var(--fg); font-weight: 700; }
+.prose ul { display: grid; gap: 0.6rem; max-width: 68ch; }
+.prose li { position: relative; padding-left: 1.6rem; }
+.prose li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--lime);
+}
+.prose img {
+  border-radius: var(--r-md);
+  border: 1px solid var(--hairline-soft);
+  margin-inline: auto;
+}
+.prose a { color: var(--lime); text-decoration: underline; text-underline-offset: 3px; }
+
+.post-page__cta {
+  margin-top: clamp(2.5rem, 2rem + 3vw, 4rem);
+  padding: clamp(1.6rem, 1.2rem + 2vw, 2.6rem);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--hairline);
+  background: linear-gradient(140deg, rgba(0, 129, 64, 0.35), rgba(6, 17, 9, 0.6));
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+.post-page__cta h2 { font-size: var(--t-h3); text-transform: uppercase; }
+.post-page__cta p { color: var(--fg-dim); max-width: 52ch; }
+
+.post-page__more { margin-top: clamp(3rem, 2rem + 4vw, 5rem); }
+.post-page__more h2 {
+  font-size: var(--t-h3);
+  text-transform: uppercase;
+  margin-bottom: clamp(1.2rem, 1rem + 1vw, 1.8rem);
+}
+/* The cards are the homepage component, but here they sit on the dark ground. */
+.post-page__more .post { background: var(--ink-1); border-color: var(--hairline-soft); }
+.post-page__more .post__body h3 { color: var(--fg); }
+.post-page__more .post__meta { color: var(--fg-faint); }
+.post-page__more .post__thumb { background: var(--ink-2); }
+@media (hover: hover) and (pointer: fine) {
+  .post-page__more .post:hover { box-shadow: 0 26px 50px -24px rgba(0, 0, 0, 0.8); }
+}

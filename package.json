@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/build-posts.mjs",
     "preview": "vite preview",
-    "validate": "html-validate dist/index.html && node scripts/validate.mjs",
+    "validate": "html-validate \"dist/**/*.html\" && node scripts/validate.mjs",
     "verify": "npm run build && npm run validate"
   },
   "devDependencies": {

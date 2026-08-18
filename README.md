@@ -32,7 +32,9 @@ index.html          seluruh halaman (nav, hero, stats, about, pillars, 3 produk,
 css/style.css       design system + seluruh motion language   -> di-hash oleh Vite
 js/main.js          interaksi: reveal, counter, gauge, product switcher, carousel,
                     lightbox, form, nav                        -> di-hash oleh Vite
-scripts/validate.mjs  cek struktur terhadap dist/
+content/posts.json  isi 4 artikel blog, ditarik dari WP REST API
+scripts/build-posts.mjs  render artikel jadi dist/<slug>/index.html + feed.xml
+scripts/validate.mjs  cek struktur terhadap seluruh halaman di dist/
 source-assets/      key visual mentah, sumber untuk regenerasi cutout (tidak dibuild)
 public/             disalin apa adanya ke root, URL-nya TIDAK di-hash
   robots.txt, sitemap.xml
@@ -68,7 +70,7 @@ hasil background removal dari key visual marketplace; file aslinya tetap ada di
 | Produk | Deskripsi lengkap + 4 manfaat "Before → After" per produk (12 total) |
 | Film | Player vertikal "CreaSpark Sebagai Solusi" + 6 beat yang bisa diklik untuk seek |
 | Testimoni | Carousel 5 slide, salah satunya video YouTube |
-| Blog | 4 artikel, tertaut ke halalpro.id |
+| Blog | 4 artikel, kini jadi halaman statis di URL yang sama persis |
 | Contact | 0895-3333-36546 · halalpro@bisabaik.or.id · alamat HQ & WH |
 | Store | TikTok Shop, Tokopedia, Shopee |
 | Footer | Useful Links, Subscribe, Instagram/TikTok/YouTube/LinkedIn |
@@ -176,6 +178,28 @@ supaya key visual mentah tetap ada di git tapi tidak ikut ter-deploy.
 Itu benar kalau domain halalpro.id nanti diarahkan ke deployment ini. Kalau situs ini
 dipakai permanen di `*.vercel.app`, cari-ganti host tersebut dulu; kalau tidak,
 canonical akan menyerahkan seluruh sinyal SEO ke situs WordPress lama.
+
+## Blog
+
+Keempat artikel dulu hidup di WordPress. Saat domain halalpro.id diarahkan ke
+deployment ini, WordPress hilang — dan URL-nya sudah terindeks Google. Jadi artikelnya
+dipindah jadi halaman statis **di path yang sama persis**:
+
+```
+https://halalpro.id/creatine-halal-creaspark-rahasia-pump-lebih-lama-dan-otot-makin-besar-ala-atlet-muslim/
+https://halalpro.id/creatine-monohydrate-suplemen-wajib-untuk-performa-olahraga-yang-lebih-baik/
+https://halalpro.id/maksimalkan-manfaat-creaspark-panduan-lengkap-penggunaan-creatine-untuk-hasil-optimal/
+https://halalpro.id/ingin-tubuh-kuat-dan-bugar-untuk-beribadah-dengan-optimal-temukan-rahasianya-di-sini/
+```
+
+Tidak ada URL yang berubah, jadi tidak perlu redirect dan ranking terbawa apa adanya.
+`/feed.xml` menggantikan feed WordPress supaya `<link rel="alternate">` tetap valid.
+
+Isi artikel ada di `content/posts.json`. Untuk mengedit atau menambah artikel, ubah file
+itu lalu `npm run build` — `scripts/build-posts.mjs` merender ulang halamannya, mengambil
+nav dan footer langsung dari `dist/index.html` supaya chrome-nya tidak pernah menyimpang
+dari homepage. `npm run validate` gagal kalau ada slug di `content/posts.json` atau URL di
+`sitemap.xml` yang tidak menghasilkan halaman.
 
 ## SEO
 
