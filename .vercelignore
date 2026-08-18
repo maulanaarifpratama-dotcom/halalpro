@@ -1,0 +1,6 @@
+# Key visual mentah dari halalpro.id — disimpan di git sebagai sumber untuk
+# regenerasi cutout, tapi tidak perlu ikut ter-deploy (~4 MB).
+assets/products/original/
+
+.claude/
+README.md

@@ -131,6 +131,30 @@ di bawah kelas itu `[data-reveal]` disembunyikan. Switcher produk memakai
 lightbox `aria-modal` dengan Escape dan focus return, semua ikon dekoratif
 `aria-hidden`, dan ada skip link ke konten utama.
 
+## Deploy (Vercel)
+
+Situs ini statis murni — tidak ada framework, build step, atau dependency runtime.
+Di Vercel:
+
+| Setting | Nilai |
+|---|---|
+| Framework Preset | **Other** |
+| Build Command | *kosongkan* |
+| Output Directory | *kosongkan* (root repo) |
+| Install Command | *kosongkan* |
+| Node.js Version | tidak relevan |
+
+Import repo, biarkan keempat kolom di atas kosong, Deploy. `vercel.json` sudah
+mengatur cache header (HTML selalu revalidate, aset 7 hari + `stale-while-revalidate`)
+dan beberapa security header. `.vercelignore` menahan `assets/products/original/`
+(~3,7 MB key visual mentah) supaya tetap ada di git tapi tidak ikut ter-deploy.
+
+**Penting soal domain.** Semua URL absolut — `canonical`, `og:url`, `og:image`,
+`sitemap.xml`, `robots.txt`, dan `@id` di JSON-LD — menunjuk ke `https://halalpro.id`.
+Itu benar kalau domain halalpro.id nanti diarahkan ke deployment ini. Kalau situs ini
+dipakai permanen di `*.vercel.app`, cari-ganti host tersebut dulu; kalau tidak,
+canonical akan menyerahkan seluruh sinyal SEO ke situs WordPress lama.
+
 ## SEO
 
 Semua URL absolut di `robots.txt`, `sitemap.xml`, `canonical`, `og:*`, dan JSON-LD
