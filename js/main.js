@@ -578,11 +578,7 @@
     if (trigger) { e.preventDefault(); openVideo(trigger.dataset.video); return; }
     if (e.target === lightbox) closeVideo();
   });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeVideo();
-    const t = e.target.closest?.('[data-video][tabindex]');
-    if (t && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openVideo(t.dataset.video); }
-  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideo(); });
   $('#lbClose')?.addEventListener('click', closeVideo);
 
   /* ------------------------------------------------------------------------

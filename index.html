@@ -196,7 +196,7 @@
 </head>
 <body>
 
-<a class="btn" href="#main" style="position:absolute;left:-9999px;top:0;z-index:999" onfocus="this.style.left='1rem';this.style.top='1rem'" onblur="this.style.left='-9999px'">Lewati ke konten</a>
+<a class="btn skip-link" href="#main">Lewati ke konten</a>
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 
@@ -223,7 +223,7 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
 
-    <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Buka menu">
+    <button type="button" class="nav__burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Buka menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -273,9 +273,9 @@
       <p class="hero__desc" data-reveal style="--i:2" id="heroDesc">Meningkatkan kekuatan, daya tahan, dan performa otot. Dengan tambahan Glutamin, membantu penyerapan nutrisi tubuh dan meningkatkan imun</p>
 
       <div class="switcher" role="tablist" aria-label="Pilih produk" data-reveal style="--i:3">
-        <button class="switcher__btn" role="tab" aria-selected="true" data-tub="creaspark" translate="no">CreaSpark</button>
-        <button class="switcher__btn" role="tab" aria-selected="false" data-tub="whey" translate="no">Whey Radiant</button>
-        <button class="switcher__btn" role="tab" aria-selected="false" data-tub="naturspark" translate="no">NaturSpark</button>
+        <button type="button" class="switcher__btn" role="tab" aria-selected="true" data-tub="creaspark" translate="no">CreaSpark</button>
+        <button type="button" class="switcher__btn" role="tab" aria-selected="false" data-tub="whey" translate="no">Whey Radiant</button>
+        <button type="button" class="switcher__btn" role="tab" aria-selected="false" data-tub="naturspark" translate="no">NaturSpark</button>
       </div>
 
       <div class="hero__actions" data-reveal style="--i:4">
@@ -283,7 +283,7 @@
           Read More
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <button class="btn btn--ghost" data-video="v3WOmmpIFjQ" data-magnetic>
+        <button type="button" class="btn btn--ghost" data-video="v3WOmmpIFjQ" data-magnetic>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
           Watch Video
         </button>
@@ -339,7 +339,7 @@
   <div class="shell about__grid">
     <div data-reveal="left">
       <h2 class="about__title"><span>Welcome to</span>Halal Pro</h2>
-      <p class="lede" style="margin-top:1.4rem">Halal Pro berkomitmen untuk menyediakan produk dan layanan halal berkualitas tinggi bagi konsumen. Kami percaya bahwa setiap orang berhak untuk hidup sehat dan bahagia, dan kami ingin membantu mereka mencapai tujuan itu dengan menyediakan pilihan yang halal dan terpercaya.</p>
+      <p class="lede lede--spaced">Halal Pro berkomitmen untuk menyediakan produk dan layanan halal berkualitas tinggi bagi konsumen. Kami percaya bahwa setiap orang berhak untuk hidup sehat dan bahagia, dan kami ingin membantu mereka mencapai tujuan itu dengan menyediakan pilihan yang halal dan terpercaya.</p>
     </div>
 
     <div class="mv">
@@ -368,10 +368,10 @@
     <h2 data-reveal>Mendukung Gaya Hidup Halal dan Sehat</h2>
     <p data-reveal style="--i:1">Halal Pro hadir dengan produk suplemen berkualitas dan bersertifikasi halal untuk membantu Anda mencapai performa dan keseimbangan tubuh terbaik. Mulailah perjalanan sehat Anda bersama kami.</p>
 
-    <div class="video" data-video="BVjqFQvQGOs" role="button" tabindex="0" aria-label="Putar video Halal Pro" data-reveal="scale" style="--i:2">
+    <button type="button" class="video" data-video="BVjqFQvQGOs" aria-label="Putar video Halal Pro" data-reveal="scale" style="--i:2">
       <picture><source srcset="assets/testimonials/video-cover.webp" type="image/webp"><img src="assets/testimonials/video-cover.png" alt="" width="423" height="266" loading="lazy"></picture>
       <span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
-    </div>
+    </button>
   </div>
 </section>
 
@@ -448,7 +448,7 @@
 </section>
 
 <!-- Shared gradient for every gauge on the page -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<svg class="u-defs" width="0" height="0" aria-hidden="true" focusable="false">
   <defs>
     <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#008140"/>
@@ -474,7 +474,7 @@
         <p data-reveal style="--i:1">CreaSpark adalah suplemen premium yang dirancang untuk mereka yang menginginkan performa otot maksimal dan pemulihan cepat setelah latihan. Setiap komposisi dalam CreaSpark dirancang untuk memenuhi kebutuhan tubuh yang aktif dan penuh tantangan, menggabungkan kekuatan creatine, glutamine, dan berbagai vitamin esensial.</p>
         <p data-reveal style="--i:2">Dengan Creatine sebagai bahan utama, Creaspark mampu menambah energi otot, meningkatkan performa, dan mendorong intensitas latihan Anda. Glutamine yang terkandung di dalamnya mendukung penyerapan nutrisi dengan optimal, membantu tubuh pulih lebih cepat dan siap untuk latihan berikutnya. Selain itu, kandungan vitamin dalam Creaspark membantu menjaga sistem imun agar tetap kuat, menjadikan tubuh lebih tahan terhadap kelelahan dan risiko infeksi.</p>
         <div data-reveal style="--i:3">
-          <button class="btn btn--ghost" data-video="v3WOmmpIFjQ" data-magnetic>
+          <button type="button" class="btn btn--ghost" data-video="v3WOmmpIFjQ" data-magnetic>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
             Watch Video
           </button>
@@ -684,7 +684,7 @@
   <div class="shell reel__grid">
     <div class="reel__copy">
       <span class="eyebrow" data-reveal="fade">Film</span>
-      <h2 data-reveal>CreaSpark<br>Sebagai Solusi</h2>
+      <h2 id="reelTitle" data-reveal>CreaSpark<br>Sebagai Solusi</h2>
       <p data-reveal style="--i:1">Latihan berat, pemulihan lambat, dan keraguan soal kehalalan suplemen — itu cerita yang kami dengar berulang kali. Film pendek ini mengikuti satu perjalanan latihan, dari kegagalan sampai recovery yang lebih cepat.</p>
 
       <div class="beats" data-reveal style="--i:2">
@@ -702,15 +702,15 @@
       <div class="phone__screen">
         <video id="reelVideo" muted loop playsinline preload="none"
                poster="assets/media/reel-poster.jpg"
-               aria-label="Film CreaSpark Sebagai Solusi dari Halal Pro">
+               title="CreaSpark Sebagai Solusi — film pendek Halal Pro">
           <source src="assets/media/reel.mp4" type="video/mp4">
         </video>
         <div class="phone__controls">
-          <button class="pill-btn" id="reelPlay" aria-label="Putar atau jeda film">
+          <button type="button" class="pill-btn" id="reelPlay" aria-label="Putar atau jeda film">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" id="reelPlayIcon"><path d="M8 5v14l11-7z"/></svg>
             <span id="reelPlayLabel">Play</span>
           </button>
-          <button class="pill-btn" id="reelMute" aria-label="Aktifkan atau matikan suara" aria-pressed="true">
+          <button type="button" class="pill-btn" id="reelMute" aria-label="Aktifkan atau matikan suara" aria-pressed="true">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" id="reelMuteIcon"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z" opacity=".5"/><path d="m19 5-14 14" stroke="currentColor" stroke-width="2"/></svg>
             <span id="reelMuteLabel">Suara</span>
           </button>
@@ -735,10 +735,10 @@
       <div class="carousel__viewport" id="viewport">
         <div class="carousel__track" id="track">
           <figure class="slide"><picture><source srcset="assets/testimonials/sku.webp" type="image/webp"><img src="assets/testimonials/sku.png" alt="Testimoni pelanggan Halal Pro" width="423" height="266" loading="lazy"></picture></figure>
-          <figure class="slide slide--video" data-video="DkPwT9PVDI4" role="button" tabindex="0" aria-label="Putar video testimoni">
+          <button type="button" class="slide slide--video" data-video="DkPwT9PVDI4" aria-label="Putar video testimoni">
             <picture><source srcset="assets/testimonials/video-cover.webp" type="image/webp"><img src="assets/testimonials/video-cover.png" alt="Video testimoni pelanggan Halal Pro" width="423" height="266" loading="lazy"></picture>
             <span class="slide__play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
-          </figure>
+          </button>
           <figure class="slide"><picture><source srcset="assets/testimonials/sku-1.webp" type="image/webp"><img src="assets/testimonials/sku-1.png" alt="Testimoni pelanggan Halal Pro" width="423" height="266" loading="lazy"></picture></figure>
           <figure class="slide"><picture><source srcset="assets/testimonials/dsc09491.webp" type="image/webp"><img src="assets/testimonials/dsc09491.png" alt="Dokumentasi Halal Pro" width="940" height="593" loading="lazy"></picture></figure>
           <figure class="slide"><picture><source srcset="assets/testimonials/sku-2.webp" type="image/webp"><img src="assets/testimonials/sku-2.png" alt="Testimoni pelanggan Halal Pro" width="423" height="266" loading="lazy"></picture></figure>
@@ -746,11 +746,11 @@
       </div>
 
       <div class="carousel__nav">
-        <button class="carousel__btn" id="prev" aria-label="Sebelumnya">
+        <button type="button" class="carousel__btn" id="prev" aria-label="Sebelumnya">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
         </button>
         <div class="carousel__dots" id="dots"></div>
-        <button class="carousel__btn" id="next" aria-label="Berikutnya">
+        <button type="button" class="carousel__btn" id="next" aria-label="Berikutnya">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
       </div>
@@ -819,7 +819,7 @@
 <section class="section section--tight">
   <div class="shell">
     <div class="cta" data-reveal="scale">
-      <span class="eyebrow" style="color:var(--lime)">Join a Newsletter</span>
+      <span class="eyebrow eyebrow--lime">Join a Newsletter</span>
       <h2>Ingin Tubuh Kuat dan Bugar untuk Beribadah dengan Optimal?</h2>
       <p>Dapatkan Diskon Khusus untuk Pelanggan Baru! ✦ Temukan rahasianya, dan jangan lewatkan newsletter kami.</p>
       <a class="btn" href="#contact" data-magnetic>
@@ -836,16 +836,16 @@
   <div class="shell contact__grid">
     <div data-reveal="left">
       <span class="eyebrow">Contact</span>
-      <h2 class="section-head" style="font-size:var(--t-h2);text-transform:uppercase;margin:1rem 0 0">Get in Touch</h2>
+      <h2 class="contact__title">Get in Touch</h2>
 
       <div class="contact__list">
-        <button class="contact__item" data-copy="0895-3333-36546">
+        <button type="button" class="contact__item" data-copy="0895-3333-36546">
           <span class="contact__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
           <span><span class="contact__k">Telepon / WhatsApp</span><span class="contact__v">0895-3333-36546</span></span>
           <span class="contact__copy">Salin</span>
         </button>
 
-        <button class="contact__item" data-copy="halalpro@bisabaik.or.id">
+        <button type="button" class="contact__item" data-copy="halalpro@bisabaik.or.id">
           <span class="contact__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
           <span><span class="contact__k">Email</span><span class="contact__v">halalpro@bisabaik.or.id</span></span>
           <span class="contact__copy">Salin</span>
@@ -853,7 +853,7 @@
       </div>
 
       <div class="addr">
-        <h3 class="eyebrow" style="margin-top:1.4rem">Address</h3>
+        <h3 class="eyebrow eyebrow--spaced">Address</h3>
         <div class="addr__card">
           <h4>HQ</h4>
           <p>Jl. Sepat No.43, Kebagusan, Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12520</p>
@@ -886,7 +886,7 @@
         <label for="cMsg">Pesan (opsional)</label>
       </div>
 
-      <button class="btn" type="submit" data-magnetic>
+      <button type="submit" class="btn" data-magnetic>
         Send
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
@@ -906,17 +906,17 @@
     </div>
 
     <div class="stores">
-      <a class="store" href="https://www.tiktok.com/@halalpro.id" target="_blank" rel="noopener" style="--tint:rgba(255,255,255,.25)" data-reveal style="--i:0">
+      <a class="store store--tiktok" href="https://www.tiktok.com/@halalpro.id" target="_blank" rel="noopener" data-reveal style="--i:0">
         <picture><source srcset="assets/icons/tiktok-shop.webp" type="image/webp"><img src="assets/icons/tiktok-shop.png" alt="" width="240" height="240" loading="lazy"></picture>
         <h3>TikTok Shop</h3>
         <span>Kunjungi Toko <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
-      <a class="store" href="https://www.tokopedia.com/halalpro" target="_blank" rel="noopener" style="--tint:rgba(66,181,73,.32)" data-reveal>
+      <a class="store store--tokopedia" href="https://www.tokopedia.com/halalpro" target="_blank" rel="noopener" data-reveal style="--i:1">
         <picture><source srcset="assets/icons/tokopedia.webp" type="image/webp"><img src="assets/icons/tokopedia.png" alt="" width="240" height="240" loading="lazy"></picture>
         <h3>Tokopedia</h3>
         <span>Kunjungi Toko <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
-      <a class="store" href="https://shopee.co.id/halalproofficial" target="_blank" rel="noopener" style="--tint:rgba(238,77,45,.32)" data-reveal>
+      <a class="store store--shopee" href="https://shopee.co.id/halalproofficial" target="_blank" rel="noopener" data-reveal style="--i:2">
         <picture><source srcset="assets/icons/shopee.webp" type="image/webp"><img src="assets/icons/shopee.png" alt="" width="240" height="240" loading="lazy"></picture>
         <h3>Shopee</h3>
         <span>Kunjungi Toko <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
@@ -965,14 +965,14 @@
 
       <div>
         <h4>Subscribe Now</h4>
-        <p style="color:var(--fg-dim);font-size:.98rem">Jangan lewatkan newsletter kami!</p>
+        <p class="footer__note">Jangan lewatkan newsletter kami!</p>
         <form class="subscribe" id="subForm" novalidate>
           <input type="email" id="subEmail" placeholder="nama@email.com…" aria-label="Alamat email" autocomplete="email" inputmode="email" spellcheck="false" required>
-          <button class="btn" type="submit">Subscribe</button>
+          <button type="submit" class="btn">Subscribe</button>
         </form>
         <p class="form__status" id="subStatus" role="status" aria-live="polite"></p>
 
-        <picture><source srcset="assets/img/stay-fit-stay-halal.webp" type="image/webp"><img src="assets/img/stay-fit-stay-halal.png" alt="Stay Fit Stay Halal" width="260" height="260" loading="lazy" style="width:120px;margin-top:1.4rem;opacity:.9"></picture>
+        <picture><source srcset="assets/img/stay-fit-stay-halal.webp" type="image/webp"><img src="assets/img/stay-fit-stay-halal.png" alt="Stay Fit Stay Halal" width="260" height="260" loading="lazy" class="footer__badge"></picture>
       </div>
     </div>
 
@@ -988,13 +988,13 @@
   <span>WhatsApp</span>
 </a>
 
-<button class="motion-toggle" id="motionToggle" aria-pressed="false" data-on="false">
+<button type="button" class="motion-toggle" id="motionToggle" aria-pressed="false" data-on="false">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" id="motionIcon"><path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor" stroke="none"/></svg>
   <span id="motionLabel">Jeda animasi</span>
 </button>
 
 <div class="lightbox" id="lightbox" data-open="false" role="dialog" aria-modal="true" aria-label="Pemutar video">
-  <button class="lightbox__close" id="lbClose" aria-label="Tutup video">
+  <button type="button" class="lightbox__close" id="lbClose" aria-label="Tutup video">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
   </button>
   <div class="lightbox__frame" id="lbFrame"></div>

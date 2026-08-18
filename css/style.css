@@ -1912,3 +1912,55 @@ html[data-motion="off"] .reel-bed video { display: none; }
   .motion-toggle span { display: none; }
   .motion-toggle { padding: 0.75rem; }
 }
+
+/* ==========================================================================
+   25. Utility classes
+   These replace inline styles that were carrying real presentation. The
+   remaining inline styles are custom-property values only (--i stagger
+   index), which belong on the element because they are per-instance data.
+   ========================================================================== */
+
+/* Skip link — off-canvas until it takes focus, no inline handlers needed. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 999;
+  transform: translateY(-200%);
+  transition: transform var(--d-base) var(--e-out);
+}
+.skip-link:focus-visible { transform: none; }
+
+/* Off-screen <defs> carrier for the shared gauge gradient. */
+.u-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.lede--spaced { margin-top: 1.4rem; }
+.eyebrow--lime { color: var(--lime); }
+.eyebrow--spaced { margin-top: 1.4rem; }
+
+.contact__title {
+  font-size: var(--t-h2);
+  text-transform: uppercase;
+  margin: 1rem 0 0;
+}
+
+.footer__note { color: var(--fg-dim); font-size: 0.98rem; }
+.footer__badge { width: 120px; margin-top: 1.4rem; opacity: 0.9; }
+
+/* Store tints, previously a second (silently dropped) style attribute. */
+.store--tiktok { --tint: rgba(255, 255, 255, 0.25); }
+.store--tokopedia { --tint: rgba(66, 181, 73, 0.32); }
+.store--shopee { --tint: rgba(238, 77, 45, 0.32); }
+
+/* .video and .slide are now real <button>s, so they need the button reset
+   their previous <div>/<figure> markup got for free. */
+.video, .slide {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+}
+.slide { border: 1px solid var(--hairline-soft); }
