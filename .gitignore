@@ -8,3 +8,5 @@ Thumbs.db
 .claude/
 node_modules/
 skills-lock.json
+node_modules/
+dist/

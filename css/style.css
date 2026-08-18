@@ -905,14 +905,14 @@ p { text-wrap: pretty; }
   -webkit-mask: var(--icon) center / contain no-repeat;
   mask: var(--icon) center / contain no-repeat;
 }
-.ic--halal       { --icon: url(../assets/icons/halal.svg); }
-.ic--terjangkau  { --icon: url(../assets/icons/terjangkau.svg); }
-.ic--berkualitas { --icon: url(../assets/icons/berkualitas.svg); }
-.ic--inovatif    { --icon: url(../assets/icons/inovatif.svg); }
-.ic--komunitas   { --icon: url(../assets/icons/komunitas.svg); }
-.ic--peduli      { --icon: url(../assets/icons/peduli.svg); }
-.ic--mission     { --icon: url(../assets/icons/mission.png); }
-.ic--vision      { --icon: url(../assets/icons/vision.png); }
+.ic--halal       { --icon: url(/assets/icons/halal.svg); }
+.ic--terjangkau  { --icon: url(/assets/icons/terjangkau.svg); }
+.ic--berkualitas { --icon: url(/assets/icons/berkualitas.svg); }
+.ic--inovatif    { --icon: url(/assets/icons/inovatif.svg); }
+.ic--komunitas   { --icon: url(/assets/icons/komunitas.svg); }
+.ic--peduli      { --icon: url(/assets/icons/peduli.svg); }
+.ic--mission     { --icon: url(/assets/icons/mission.png); }
+.ic--vision      { --icon: url(/assets/icons/vision.png); }
 
 .pillar__icon { color: #fff; }
 .pillar:hover .pillar__icon { transform: translateY(-4px) rotate(-6deg); background: var(--green); }

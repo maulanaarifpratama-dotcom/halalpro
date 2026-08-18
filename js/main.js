@@ -680,8 +680,8 @@
       v.muted = true; v.loop = true; v.playsInline = true;
       v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
       v.preload = 'auto';
-      v.poster = 'assets/media/hero-poster.jpg';
-      v.src = 'assets/media/hero-loop.mp4';
+      v.poster = '/assets/media/hero-poster.jpg';
+      v.src = '/assets/media/hero-loop.mp4';
       v.setAttribute('aria-hidden', 'true');
       // The poster <img> stays underneath as a permanent fallback: if the
       // video never decodes or autoplay is refused, the gym still shows.

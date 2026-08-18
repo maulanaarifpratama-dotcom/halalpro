@@ -29,16 +29,16 @@
 <meta name="twitter:image" content="https://halalpro.id/assets/products/og-image.png">
 <meta name="twitter:image:alt" content="Whey Radiant dari Halal Pro">
 
-<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32">
-<link rel="icon" href="assets/img/favicon-192.png" sizes="192x192">
-<link rel="apple-touch-icon" href="assets/img/favicon.png">
+<link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32">
+<link rel="icon" href="/assets/img/favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="preload" as="image" href="assets/products/creaspark-cut.webp" type="image/webp" fetchpriority="high">
-<link rel="preload" as="image" href="assets/media/hero-poster.jpg" fetchpriority="high">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="preload" as="image" href="/assets/products/creaspark-cut.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/media/hero-poster.jpg" fetchpriority="high">
 
 <script type="application/ld+json">
 {
@@ -192,7 +192,12 @@
   ]
 }
 </script>
-<script>document.documentElement.classList.add('js');</script>
+<script>
+/* Only claim JS when the module below can actually run. The reveal styles hide
+   content behind html.js, so setting it unconditionally would blank the page on
+   any browser that skips module scripts. */
+if ('noModule' in HTMLScriptElement.prototype) document.documentElement.classList.add('js');
+</script>
 </head>
 <body>
 
@@ -204,7 +209,7 @@
 <header class="nav" id="nav">
   <div class="nav__inner">
     <a class="nav__logo" href="#top" aria-label="Halal Pro — beranda">
-      <picture><source srcset="assets/img/logo.webp" type="image/webp"><img src="assets/img/logo.png" alt="Halal Pro" width="400" height="199"></picture>
+      <picture><source srcset="/assets/img/logo.webp" type="image/webp"><img src="/assets/img/logo.png" alt="Halal Pro" width="400" height="199"></picture>
     </a>
 
     <nav class="nav__menu" id="menu" aria-label="Navigasi utama">
@@ -245,7 +250,7 @@
 <section class="hero" id="top">
   <div class="hero__bg" aria-hidden="true">
     <div class="reel-bed" id="heroBed" style="--bed-opacity:.46">
-      <img src="assets/media/hero-poster.jpg" alt="" width="1280" height="720">
+      <img src="/assets/media/hero-poster.jpg" alt="" width="1280" height="720">
     </div>
     <div class="hero__grid-lines"></div>
     <div class="hero__bloom" id="bloom"></div>
@@ -292,9 +297,9 @@
 
     <div class="hero__stage" id="stage">
       <div class="hero__halo" aria-hidden="true"></div>
-      <picture><source srcset="assets/products/creaspark-cut.webp" type="image/webp"><img class="hero__tub" data-tub="creaspark" data-active="true" src="assets/products/creaspark-cut.png" alt="CreaSpark — creatine halal Halal Pro" width="583" height="321" fetchpriority="high"></picture>
-      <picture><source srcset="assets/products/whey-radiant-cut.webp" type="image/webp"><img class="hero__tub" data-tub="whey" src="assets/products/whey-radiant-cut.png" alt="Whey Radiant — whey protein halal Halal Pro" width="944" height="673" loading="lazy"></picture>
-      <picture><source srcset="assets/products/naturspark-cut.webp" type="image/webp"><img class="hero__tub" data-tub="naturspark" src="assets/products/naturspark-cut.png" alt="NaturSpark — testo booster herbal halal Halal Pro" width="603" height="685" loading="lazy"></picture>
+      <picture><source srcset="/assets/products/creaspark-cut.webp" type="image/webp"><img class="hero__tub" data-tub="creaspark" data-active="true" src="/assets/products/creaspark-cut.png" alt="CreaSpark — creatine halal Halal Pro" width="583" height="321" fetchpriority="high"></picture>
+      <picture><source srcset="/assets/products/whey-radiant-cut.webp" type="image/webp"><img class="hero__tub" data-tub="whey" src="/assets/products/whey-radiant-cut.png" alt="Whey Radiant — whey protein halal Halal Pro" width="944" height="673" loading="lazy"></picture>
+      <picture><source srcset="/assets/products/naturspark-cut.webp" type="image/webp"><img class="hero__tub" data-tub="naturspark" src="/assets/products/naturspark-cut.png" alt="NaturSpark — testo booster herbal halal Halal Pro" width="603" height="685" loading="lazy"></picture>
 
       <span class="orbit orbit--a" aria-hidden="true"><b>100%</b> Halal Certified</span>
       <span class="orbit orbit--b" aria-hidden="true"><b>3</b> Produk Unggulan</span>
@@ -369,7 +374,7 @@
     <p data-reveal style="--i:1">Halal Pro hadir dengan produk suplemen berkualitas dan bersertifikasi halal untuk membantu Anda mencapai performa dan keseimbangan tubuh terbaik. Mulailah perjalanan sehat Anda bersama kami.</p>
 
     <button type="button" class="video" data-video="BVjqFQvQGOs" aria-label="Putar video Halal Pro" data-reveal="scale" style="--i:2">
-      <picture><source srcset="assets/testimonials/video-cover.webp" type="image/webp"><img src="assets/testimonials/video-cover.png" alt="" width="423" height="266" loading="lazy"></picture>
+      <picture><source srcset="/assets/testimonials/video-cover.webp" type="image/webp"><img src="/assets/testimonials/video-cover.png" alt="" width="423" height="266" loading="lazy"></picture>
       <span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
     </button>
   </div>
@@ -465,7 +470,7 @@
       <div class="product__media" data-reveal="scale">
         <span class="product__glow" style="--tint:rgba(148,233,0,.3)" aria-hidden="true"></span>
         <span class="product__ring" aria-hidden="true"></span>
-        <picture><source srcset="assets/products/creaspark-cut.webp" type="image/webp"><img class="product__shot" data-tilt data-reveal="fade" data-clip src="assets/products/creaspark-cut.png" alt="Kemasan CreaSpark dari Halal Pro" width="583" height="321" loading="lazy"></picture>
+        <picture><source srcset="/assets/products/creaspark-cut.webp" type="image/webp"><img class="product__shot" data-tilt data-reveal="fade" data-clip src="/assets/products/creaspark-cut.png" alt="Kemasan CreaSpark dari Halal Pro" width="583" height="321" loading="lazy"></picture>
       </div>
 
       <div class="product__copy">
@@ -538,7 +543,7 @@
       <div class="product__media" data-reveal="scale">
         <span class="product__glow" style="--tint:rgba(13,184,0,.3)" aria-hidden="true"></span>
         <span class="product__ring" aria-hidden="true"></span>
-        <picture><source srcset="assets/products/whey-radiant-cut.webp" type="image/webp"><img class="product__shot" data-tilt data-reveal="fade" data-clip src="assets/products/whey-radiant-cut.png" alt="Kemasan Whey Radiant dari Halal Pro" width="944" height="673" loading="lazy"></picture>
+        <picture><source srcset="/assets/products/whey-radiant-cut.webp" type="image/webp"><img class="product__shot" data-tilt data-reveal="fade" data-clip src="/assets/products/whey-radiant-cut.png" alt="Kemasan Whey Radiant dari Halal Pro" width="944" height="673" loading="lazy"></picture>
       </div>
 
       <div class="product__copy">
@@ -611,7 +616,7 @@
       <div class="product__media" data-reveal="scale">
         <span class="product__glow" style="--tint:rgba(0,129,64,.42)" aria-hidden="true"></span>
         <span class="product__ring" aria-hidden="true"></span>
-        <picture><source srcset="assets/products/naturspark-cut.webp" type="image/webp"><img class="product__shot" data-tilt data-reveal="fade" data-clip src="assets/products/naturspark-cut.png" alt="Kemasan NaturSpark dari Halal Pro" width="603" height="685" loading="lazy"></picture>
+        <picture><source srcset="/assets/products/naturspark-cut.webp" type="image/webp"><img class="product__shot" data-tilt data-reveal="fade" data-clip src="/assets/products/naturspark-cut.png" alt="Kemasan NaturSpark dari Halal Pro" width="603" height="685" loading="lazy"></picture>
       </div>
 
       <div class="product__copy">
@@ -701,9 +706,9 @@
       <span class="phone__glow" aria-hidden="true"></span>
       <div class="phone__screen">
         <video id="reelVideo" muted loop playsinline preload="none"
-               poster="assets/media/reel-poster.jpg"
+               poster="/assets/media/reel-poster.jpg"
                title="CreaSpark Sebagai Solusi — film pendek Halal Pro">
-          <source src="assets/media/reel.mp4" type="video/mp4">
+          <source src="/assets/media/reel.mp4" type="video/mp4">
         </video>
         <div class="phone__controls">
           <button type="button" class="pill-btn" id="reelPlay" aria-label="Putar atau jeda film">
@@ -734,14 +739,14 @@
     <div class="carousel" id="carousel" data-reveal="scale">
       <div class="carousel__viewport" id="viewport">
         <div class="carousel__track" id="track">
-          <figure class="slide"><picture><source srcset="assets/testimonials/sku.webp" type="image/webp"><img src="assets/testimonials/sku.png" alt="Testimoni pelanggan Halal Pro" width="423" height="266" loading="lazy"></picture></figure>
+          <figure class="slide"><picture><source srcset="/assets/testimonials/sku.webp" type="image/webp"><img src="/assets/testimonials/sku.png" alt="Testimoni pelanggan Halal Pro" width="423" height="266" loading="lazy"></picture></figure>
           <button type="button" class="slide slide--video" data-video="DkPwT9PVDI4" aria-label="Putar video testimoni">
-            <picture><source srcset="assets/testimonials/video-cover.webp" type="image/webp"><img src="assets/testimonials/video-cover.png" alt="Video testimoni pelanggan Halal Pro" width="423" height="266" loading="lazy"></picture>
+            <picture><source srcset="/assets/testimonials/video-cover.webp" type="image/webp"><img src="/assets/testimonials/video-cover.png" alt="Video testimoni pelanggan Halal Pro" width="423" height="266" loading="lazy"></picture>
             <span class="slide__play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
           </button>
-          <figure class="slide"><picture><source srcset="assets/testimonials/sku-1.webp" type="image/webp"><img src="assets/testimonials/sku-1.png" alt="Testimoni pelanggan Halal Pro" width="423" height="266" loading="lazy"></picture></figure>
-          <figure class="slide"><picture><source srcset="assets/testimonials/dsc09491.webp" type="image/webp"><img src="assets/testimonials/dsc09491.png" alt="Dokumentasi Halal Pro" width="940" height="593" loading="lazy"></picture></figure>
-          <figure class="slide"><picture><source srcset="assets/testimonials/sku-2.webp" type="image/webp"><img src="assets/testimonials/sku-2.png" alt="Testimoni pelanggan Halal Pro" width="423" height="266" loading="lazy"></picture></figure>
+          <figure class="slide"><picture><source srcset="/assets/testimonials/sku-1.webp" type="image/webp"><img src="/assets/testimonials/sku-1.png" alt="Testimoni pelanggan Halal Pro" width="423" height="266" loading="lazy"></picture></figure>
+          <figure class="slide"><picture><source srcset="/assets/testimonials/dsc09491.webp" type="image/webp"><img src="/assets/testimonials/dsc09491.png" alt="Dokumentasi Halal Pro" width="940" height="593" loading="lazy"></picture></figure>
+          <figure class="slide"><picture><source srcset="/assets/testimonials/sku-2.webp" type="image/webp"><img src="/assets/testimonials/sku-2.png" alt="Testimoni pelanggan Halal Pro" width="423" height="266" loading="lazy"></picture></figure>
         </div>
       </div>
 
@@ -770,7 +775,7 @@
     <div class="posts">
       <a class="post" href="https://halalpro.id/creatine-halal-creaspark-rahasia-pump-lebih-lama-dan-otot-makin-besar-ala-atlet-muslim/" data-reveal style="--i:0">
         <div class="post__thumb">
-          <picture><source srcset="assets/blog/post-1.webp" type="image/webp"><img data-clip src="assets/blog/post-1.png" alt="" width="511" height="420" loading="lazy"></picture>
+          <picture><source srcset="/assets/blog/post-1.webp" type="image/webp"><img data-clip src="/assets/blog/post-1.png" alt="" width="511" height="420" loading="lazy"></picture>
           <span class="post__cat">Creatine</span>
         </div>
         <div class="post__body">
@@ -781,7 +786,7 @@
 
       <a class="post" href="https://halalpro.id/creatine-monohydrate-suplemen-wajib-untuk-performa-olahraga-yang-lebih-baik/" data-reveal style="--i:1">
         <div class="post__thumb">
-          <picture><source srcset="assets/blog/post-2.webp" type="image/webp"><img data-clip src="assets/blog/post-2.png" alt="" width="760" height="760" loading="lazy"></picture>
+          <picture><source srcset="/assets/blog/post-2.webp" type="image/webp"><img data-clip src="/assets/blog/post-2.png" alt="" width="760" height="760" loading="lazy"></picture>
           <span class="post__cat">Creatine</span>
         </div>
         <div class="post__body">
@@ -792,7 +797,7 @@
 
       <a class="post" href="https://halalpro.id/maksimalkan-manfaat-creaspark-panduan-lengkap-penggunaan-creatine-untuk-hasil-optimal/" data-reveal style="--i:2">
         <div class="post__thumb">
-          <picture><source srcset="assets/blog/post-3.webp" type="image/webp"><img data-clip src="assets/blog/post-3.png" alt="" width="760" height="760" loading="lazy"></picture>
+          <picture><source srcset="/assets/blog/post-3.webp" type="image/webp"><img data-clip src="/assets/blog/post-3.png" alt="" width="760" height="760" loading="lazy"></picture>
           <span class="post__cat">Creatine</span>
         </div>
         <div class="post__body">
@@ -803,7 +808,7 @@
 
       <a class="post" href="https://halalpro.id/ingin-tubuh-kuat-dan-bugar-untuk-beribadah-dengan-optimal-temukan-rahasianya-di-sini/" data-reveal style="--i:3">
         <div class="post__thumb">
-          <picture><source srcset="assets/blog/post-4.webp" type="image/webp"><img data-clip src="assets/blog/post-4.png" alt="" width="760" height="760" loading="lazy"></picture>
+          <picture><source srcset="/assets/blog/post-4.webp" type="image/webp"><img data-clip src="/assets/blog/post-4.png" alt="" width="760" height="760" loading="lazy"></picture>
           <span class="post__cat">Creatine</span>
         </div>
         <div class="post__body">
@@ -907,17 +912,17 @@
 
     <div class="stores">
       <a class="store store--tiktok" href="https://www.tiktok.com/@halalpro.id" target="_blank" rel="noopener" data-reveal style="--i:0">
-        <picture><source srcset="assets/icons/tiktok-shop.webp" type="image/webp"><img src="assets/icons/tiktok-shop.png" alt="" width="240" height="240" loading="lazy"></picture>
+        <picture><source srcset="/assets/icons/tiktok-shop.webp" type="image/webp"><img src="/assets/icons/tiktok-shop.png" alt="" width="240" height="240" loading="lazy"></picture>
         <h3>TikTok Shop</h3>
         <span>Kunjungi Toko <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
       <a class="store store--tokopedia" href="https://www.tokopedia.com/halalpro" target="_blank" rel="noopener" data-reveal style="--i:1">
-        <picture><source srcset="assets/icons/tokopedia.webp" type="image/webp"><img src="assets/icons/tokopedia.png" alt="" width="240" height="240" loading="lazy"></picture>
+        <picture><source srcset="/assets/icons/tokopedia.webp" type="image/webp"><img src="/assets/icons/tokopedia.png" alt="" width="240" height="240" loading="lazy"></picture>
         <h3>Tokopedia</h3>
         <span>Kunjungi Toko <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
       <a class="store store--shopee" href="https://shopee.co.id/halalproofficial" target="_blank" rel="noopener" data-reveal style="--i:2">
-        <picture><source srcset="assets/icons/shopee.webp" type="image/webp"><img src="assets/icons/shopee.png" alt="" width="240" height="240" loading="lazy"></picture>
+        <picture><source srcset="/assets/icons/shopee.webp" type="image/webp"><img src="/assets/icons/shopee.png" alt="" width="240" height="240" loading="lazy"></picture>
         <h3>Shopee</h3>
         <span>Kunjungi Toko <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
@@ -932,7 +937,7 @@
   <div class="shell">
     <div class="footer__grid">
       <div class="footer__brand">
-        <picture><source srcset="assets/img/logo.webp" type="image/webp"><img src="assets/img/logo.png" alt="Halal Pro" width="400" height="199" loading="lazy"></picture>
+        <picture><source srcset="/assets/img/logo.webp" type="image/webp"><img src="/assets/img/logo.png" alt="Halal Pro" width="400" height="199" loading="lazy"></picture>
         <p>Kami berkomitmen untuk menyediakan suplemen halal berkualitas tinggi, Stay Fit Stay Halal</p>
         <div class="socials">
           <a class="social" href="https://www.instagram.com/halalproofficial/" target="_blank" rel="noopener" aria-label="Instagram Halal Pro">
@@ -972,7 +977,7 @@
         </form>
         <p class="form__status" id="subStatus" role="status" aria-live="polite"></p>
 
-        <picture><source srcset="assets/img/stay-fit-stay-halal.webp" type="image/webp"><img src="assets/img/stay-fit-stay-halal.png" alt="Stay Fit Stay Halal" width="260" height="260" loading="lazy" class="footer__badge"></picture>
+        <picture><source srcset="/assets/img/stay-fit-stay-halal.webp" type="image/webp"><img src="/assets/img/stay-fit-stay-halal.png" alt="Stay Fit Stay Halal" width="260" height="260" loading="lazy" class="footer__badge"></picture>
       </div>
     </div>
 
@@ -1000,6 +1005,6 @@
   <div class="lightbox__frame" id="lbFrame"></div>
 </div>
 
-<script src="js/main.js"></script>
+<script type="module" src="/js/main.js"></script>
 </body>
 </html>

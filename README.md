@@ -1,15 +1,26 @@
 # Halal Pro — Stay Fit Stay Halal
 
-Rebuild dari [halalpro.id](https://halalpro.id) sebagai situs statis: satu halaman, tanpa
-build step, tanpa dependency. Seluruh konten dan tautan dari situs lama dipertahankan;
-yang berubah adalah bahasa visual dan lapisan motion.
+Rebuild dari [halalpro.id](https://halalpro.id) sebagai situs statis: satu halaman,
+HTML/CSS/JS vanilla, **nol dependency runtime**. Seluruh konten dan tautan dari situs
+lama dipertahankan; yang berubah adalah bahasa visual dan lapisan motion.
+
+Vite dipakai hanya sebagai build tool — tidak ada framework, tidak ada React. Yang
+dibeli: nama file ber-hash (buka jalan `Cache-Control: immutable`), minifikasi, dan
+dev server dengan HMR.
 
 ```bash
-python -m http.server 8123
+npm install
+npm run dev       # http://localhost:8123
+npm run verify    # build + validasi, harus zero error sebelum push
 ```
 
-Lalu buka <http://localhost:8123>. Cukup HTML/CSS/JS statis, jadi bisa langsung
-di-deploy ke GitHub Pages, Vercel, Netlify, atau hosting apa pun.
+| Script | Isi |
+|---|---|
+| `npm run dev` | dev server Vite + HMR |
+| `npm run build` | keluar ke `dist/` |
+| `npm run preview` | serve `dist/` apa adanya |
+| `npm run validate` | html-validate + cek struktur `dist/` |
+| `npm run verify` | `build` lalu `validate` |
 
 ---
 
@@ -18,18 +29,28 @@ di-deploy ke GitHub Pages, Vercel, Netlify, atau hosting apa pun.
 ```
 index.html          seluruh halaman (nav, hero, stats, about, pillars, 3 produk,
                     testimoni, blog, CTA, contact, store, footer)
-css/style.css       design system + seluruh motion language
+css/style.css       design system + seluruh motion language   -> di-hash oleh Vite
 js/main.js          interaksi: reveal, counter, gauge, product switcher, carousel,
-                    lightbox, form, nav
-assets/
+                    lightbox, form, nav                        -> di-hash oleh Vite
+scripts/validate.mjs  cek struktur terhadap dist/
+source-assets/      key visual mentah, sumber untuk regenerasi cutout (tidak dibuild)
+public/             disalin apa adanya ke root, URL-nya TIDAK di-hash
+  robots.txt, sitemap.xml
+  assets/
   img/              logo, favicon, badge "Stay Fit Stay Halal"
   icons/            6 ikon pilar (SVG), mission/vision, logo marketplace
   products/         product shot hasil cutout + folder original/ (aset mentah)
   blog/             thumbnail 4 artikel
   testimonials/     kartu testimoni + cover video
-  media/            footage gym: hero-loop.mp4 (bed ambient), reel.mp4 (film
+    media/          footage gym: hero-loop.mp4 (bed ambient), reel.mp4 (film
                     vertikal), plus poster JPG untuk keduanya
 ```
+
+**Kenapa `assets/` ada di `public/` dan tidak ikut di-hash.** URL-nya dikonsumsi pihak
+luar: `sitemap.xml`, `og:image`, dan `image` di JSON-LD semuanya menunjuk ke path itu.
+Kalau di-hash, setiap build akan mengubah URL yang sudah diindeks Google dan discrape
+media sosial. Jadi CSS/JS di-hash dan boleh `immutable`; gambar dan video pakai nama
+stabil dengan cache 7 hari + `stale-while-revalidate`.
 
 Semua gambar diambil dari halalpro.id dan disimpan lokal — situs ini tidak memuat
 aset apa pun dari domain lama. Product shot pada `assets/products/*-cut.png` adalah
@@ -133,21 +154,22 @@ lightbox `aria-modal` dengan Escape dan focus return, semua ikon dekoratif
 
 ## Deploy (Vercel)
 
-Situs ini statis murni — tidak ada framework, build step, atau dependency runtime.
-Di Vercel:
+Situs ini vanilla — tidak ada framework dan tidak ada dependency runtime. Vite hanya
+build tool. Di Vercel:
 
 | Setting | Nilai |
 |---|---|
-| Framework Preset | **Other** |
-| Build Command | *kosongkan* |
-| Output Directory | *kosongkan* (root repo) |
-| Install Command | *kosongkan* |
-| Node.js Version | tidak relevan |
+| Framework Preset | **Vite** |
+| Build Command | `npm run build` |
+| Output Directory | `dist` |
+| Install Command | `npm install` |
 
-Import repo, biarkan keempat kolom di atas kosong, Deploy. `vercel.json` sudah
-mengatur cache header (HTML selalu revalidate, aset 7 hari + `stale-while-revalidate`)
-dan beberapa security header. `.vercelignore` menahan `assets/products/original/`
-(~3,7 MB key visual mentah) supaya tetap ada di git tapi tidak ikut ter-deploy.
+Vercel biasanya mendeteksi ini otomatis dari `package.json` + `vite.config.js`.
+
+`vercel.json` mengatur cache header: `/build/*` (output Vite yang ber-hash) dipin
+`immutable` setahun, `/assets/*` 7 hari + `stale-while-revalidate`, HTML selalu
+revalidate. Plus beberapa security header. `.vercelignore` menahan `source-assets/`
+supaya key visual mentah tetap ada di git tapi tidak ikut ter-deploy.
 
 **Penting soal domain.** Semua URL absolut — `canonical`, `og:url`, `og:image`,
 `sitemap.xml`, `robots.txt`, dan `@id` di JSON-LD — menunjuk ke `https://halalpro.id`.
