@@ -41,7 +41,7 @@ hasil background removal dari key visual marketplace; file aslinya tetap ada di
 | Bagian | Isi |
 |---|---|
 | Hero | 3 produk (CreaSpark / Whey Radiant / NaturSpark) + tagline masing-masing |
-| Stats | 165K+ Pelanggan · 3+ Product · 100% Kepuasan · 100K+ Pengguna Rutin |
+| Stats | 165K+ Pelanggan · 3+ Product · 100% Kepuasan · 45K+ Pengguna Rutin |
 | About | Welcome to Halal Pro, Our Mission, Our Vission |
 | Pilar | Halal, Terjangkau, Berkualitas, Inovatif, Komunitas, Peduli |
 | Produk | Deskripsi lengkap + 4 manfaat "Before → After" per produk (12 total) |
