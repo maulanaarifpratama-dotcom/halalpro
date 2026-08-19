@@ -194,7 +194,7 @@
   });
 
   // Which section owns the viewport right now
-  const sectionIds = ['top', 'about', 'product', 'reel', 'store', 'blog', 'contact'];
+  const sectionIds = ['top', 'about', 'product', 'store', 'blog', 'contact'];
   const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
   if ('IntersectionObserver' in window && sections.length) {
     const sio = new IntersectionObserver((entries) => {
